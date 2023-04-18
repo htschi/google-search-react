@@ -1,7 +1,53 @@
 import logo from './logo.svg'
 import './App.css'
+import React, { useState } from 'react'
+
 
 function App() {
+  let data = [{
+    title: 'JS Tutorials',
+    description: 'The best JavaScript tutorials in the galaxy!',
+    url: 'https://www.w3schools.com',
+    links: [
+      {
+        title: 'JS for Beginners',
+        url: 'https://www.w3schools.com/js'
+      }, {
+        title: 'JS for the Web',
+        url: 'https://www.w3schools.com/js'
+      }
+    ]
+  },
+  {
+    title: 'JS Tutorials1',
+    description: 'The best JavaScript tutorials in the galaxy!',
+    url: 'https://www.w3schools.com',
+    links: [
+      {
+        title: 'JS for Beginners1',
+        url: 'https://www.w3schools.com/js'
+      }, {
+        title: 'JS for the Web1',
+        url: 'https://www.w3schools.com/js'
+      }
+    ]
+  },
+  {
+    title: 'JS Tutorials2',
+    description: 'The best JavaScript tutorials in the galaxy!',
+    url: 'https://www.w3schools.com',
+    links: [
+      {
+        title: 'JS for Beginners2',
+        url: 'https://www.w3schools.com/js'
+      }, {
+        title: 'JS for the Web2',
+        url: 'https://www.w3schools.com/js'
+      }
+    ]
+  },
+  ]
+
   return (
     <div>
       <div className="outerbox">
@@ -12,64 +58,27 @@ function App() {
         </form>
       </div>
       <div className="amount-results">
-        <span>37 Results</span>
+        <span>{data.length} Results</span>
       </div>
       <div className="search-results">
-        <div className="single-result">
-          <span>www.3wschool.com</span>
-          <a className="link" href="https://www.w3schools.com/js/">
-            <h2>JavaScript Tutorial - W3School</h2>
-          </a>
-          <p className="regularText">JavaScript is the programming language of the Web. JavaScript is easy to learn. This tutorial will teach you JavaScript from basic to advanced. Start learning ...</p>
-          <ul>
-            <li className="listItem">
-              <a href="https://www.w3schools.com/js/js_intro.asp">JS Introduction</a>
-            </li>
-            <li className="listItem">
-              <a href="https://www.w3schools.com/js/js_functions.asp">JS Function</a>
-            </li>
-            <li className="listItem">
-              <a href="https://www.w3schools.com/js/js_syntax.asp">JavaScript Syntax</a>
-            </li>
-          </ul>
-        </div>
-        <div className="single-result">
-          <span>developer.mozilla.org</span>
-          <a className="link" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">
-            <h2>JavaScript MDN</h2>
-          </a>
-          <p className="regularText">JavaScript (JS) is a lightweight, interpreted, or just-in-time compiled programming language with first-class functions.
-          </p>
-          <ul>
-            <li className="listItem">
-              <a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/JavaScript_basics">JS Basics</a>
-            </li>
-            <li className="listItem">
-              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide">JS Guide</a>
-            </li>
-            <li className="listItem">
-              <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference">JS Reference</a>
-            </li>
-          </ul>
-        </div>
-        <div className="single-result">
-          <span>www.wikipedia.com</span>
-          <a className="link" href="https://en.wikipedia.org/wiki/JavaScript">
-            <h2>JavaScript Wikipedia</h2>
-          </a>
-          <p className="regularText">JavaScript often abbreviated as JS, is a programming language that is one of the core technologies of the World Wide Web, alongside HTML and CSS.</p>
-          <ul>
-            <li className="listItem">
-              <a href="https://en.wikipedia.org/wiki/JavaScript#History">JS History</a>
-            </li>
-            <li className="listItem">
-              <a href="https://en.wikipedia.org/wiki/JavaScript#Syntax">JS Syntax</a>
-            </li>
-          </ul>
-        </div>
+        {data.map((e, i) => (
+          <div key={i} className="single-result">
+            <span>{e.url}</span>
+            <a className="link" href="https://www.w3schools.com/js/">
+              <h2>{e.title}</h2>
+            </a>
+            <p className="regularText">{e.description}</p>
+            <ul>
+              {e.links.map((li, i) => (
+                <li key={i} className="listItem">
+                  <a href={li.url}>{li.title}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   )
 }
-
 export default App
