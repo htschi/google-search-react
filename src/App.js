@@ -50,6 +50,7 @@ function App() {
 
   return (
     <div>
+      {/* Search Menu */}
       <div className="outerbox">
         <img id="logo" src="images/google.png" />
         <form>
@@ -57,10 +58,13 @@ function App() {
           <button className="search-button">Search</button>
         </form>
       </div>
+      {/* Amount of Results */}
       <div className="amount-results">
         <span>{data.length} Results</span>
       </div>
+      {/* All Search Results */}
       <div className="search-results">
+        {/* Single Search Results - Loop every Object in the Data Array */}
         {data.map((e, i) => (
           <div key={i} className="single-result">
             <span>{e.url}</span>
@@ -69,6 +73,7 @@ function App() {
             </a>
             <p className="regularText">{e.description}</p>
             <ul>
+              {/* Loop every property in the data.links */}
               {e.links.map((li, i) => (
                 <li key={i} className="listItem">
                   <a href={li.url}>{li.title}</a>
