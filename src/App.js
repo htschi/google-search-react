@@ -50,6 +50,11 @@ function App() {
     },
   ]
 
+  // Search function
+  function Search(str) {
+    return data.filter((e) => e.title.toUpperCase().includes(str.toUpperCase()))
+  }
+
   return (
     <div>
       {/* Search Menu */}
