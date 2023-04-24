@@ -74,15 +74,19 @@ function App() {
       </div>
       {/* All Search Results */}
       <div className="search-results">
-        {results.map((e, i) => (
-          <Result
-            key={i}
-            title={e.title}
-            description={e.description}
-            url={e.url}
-            links={e.links}
-          />
-        ))}
+        {results.length == 0 ? (
+          <h2>No Results available</h2>
+        ) : (
+          results.map((e, i) => (
+            <Result
+              key={i}
+              title={e.title}
+              description={e.description}
+              url={e.url}
+              links={e.links}
+            />
+          ))
+        )}
       </div>
     </div>
   )
