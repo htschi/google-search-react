@@ -1,5 +1,7 @@
 import './App.css'
 import Result from './Result.js'
+import { useState } from 'react'
+const axios = require('axios')
 
 function App() {
   let data = [
@@ -19,9 +21,10 @@ function App() {
       ],
     },
     {
-      title: 'JS Tutorials1',
-      description: 'The best JavaScript tutorials in the galaxy!',
-      url: 'https://www.w3schools.com',
+      title: 'JS Wikipedia',
+      description:
+        'JS JavaScript often abbreviated as JS, is a programming language that is one of the core technologies of the World Wide Web, alongside HTML and CSS.',
+      url: 'https://www.wikipedia.com',
       links: [
         {
           title: 'JS for Beginners1',
@@ -34,9 +37,10 @@ function App() {
       ],
     },
     {
-      title: 'JS Tutorials2',
-      description: 'The best JavaScript tutorials in the galaxy!',
-      url: 'https://www.w3schools.com',
+      title: 'Javascript',
+      description:
+        'JavaScript.com is a resource for the JavaScript community. You will find resources and examples for JavaScript beginners as well as support for JavaScript ...',
+      url: 'https://www.javascript.com',
       links: [
         {
           title: 'JS for Beginners2',
@@ -49,6 +53,44 @@ function App() {
       ],
     },
   ]
+
+  // useState
+
+  const [results, setResult] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+
+  // click on search
+  function onSubmit(e) {
+    e.preventDefault()
+  }
+
+  // filter function
+  function search(str) {
+    let filteredData = []
+    let count = 0
+    setResult(
+      data.map((e) => {
+        if (e.title.toUpperCase().includes(str.toUpperCase())) {
+          filteredData[count] = e
+          count++
+          console.log(filteredData)
+        } else {
+          if (e.description.toUpperCase().includes(str.toUpperCase())) {
+            filteredData[count] = e
+            count++
+            console.log(filteredData)
+          } else {
+            if (e.url.toUpperCase().includes(str.toUpperCase())) {
+              filteredData[count] = e
+              count++
+              console.log(filteredData)
+            }
+          }
+        }
+      })
+    )
+    setResult(filteredData)
+  }
 
   return (
     <div>
