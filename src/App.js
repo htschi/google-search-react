@@ -1,61 +1,12 @@
 import './App.css'
 import Result from './Result.js'
 import { useState } from 'react'
-const axios = require('axios')
+import Axios from 'axios'
 
 function App() {
-  let data = [
-    {
-      title: 'JS Tutorials',
-      description: 'The best JavaScript tutorials in the galaxy!',
-      url: 'https://www.w3schools.com',
-      links: [
-        {
-          title: 'JS for Beginners',
-          url: 'https://www.w3schools.com/js',
-        },
-        {
-          title: 'JS for the Web',
-          url: 'https://www.w3schools.com/js',
-        },
-      ],
-    },
-    {
-      title: 'JS Wikipedia',
-      description:
-        'JS JavaScript often abbreviated as JS, is a programming language that is one of the core technologies of the World Wide Web, alongside HTML and CSS.',
-      url: 'https://www.wikipedia.com',
-      links: [
-        {
-          title: 'JS for Beginners1',
-          url: 'https://www.w3schools.com/js',
-        },
-        {
-          title: 'JS for the Web1',
-          url: 'https://www.w3schools.com/js',
-        },
-      ],
-    },
-    {
-      title: 'Javascript',
-      description:
-        'JavaScript.com is a resource for the JavaScript community. You will find resources and examples for JavaScript beginners as well as support for JavaScript ...',
-      url: 'https://www.javascript.com',
-      links: [
-        {
-          title: 'JS for Beginners2',
-          url: 'https://www.w3schools.com/js',
-        },
-        {
-          title: 'JS for the Web2',
-          url: 'https://www.w3schools.com/js',
-        },
-      ],
-    },
-  ]
+  let data = []
 
   // useState
-
   const [results, setResult] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -64,32 +15,45 @@ function App() {
     e.preventDefault()
   }
 
-  // filter function
-  function search(str) {
-    let filteredData = []
-    let count = 0
-    setResult(
-      data.map((e) => {
-        if (e.title.toUpperCase().includes(str.toUpperCase())) {
-          filteredData[count] = e
-          count++
-          console.log(filteredData)
-        } else {
-          if (e.description.toUpperCase().includes(str.toUpperCase())) {
-            filteredData[count] = e
-            count++
-            console.log(filteredData)
-          } else {
-            if (e.url.toUpperCase().includes(str.toUpperCase())) {
-              filteredData[count] = e
-              count++
-              console.log(filteredData)
-            }
-          }
-        }
-      })
+  // manually filter function
+  // function search(str) {
+  //   let filteredData = []
+  //   let count = 0
+  //   setResult(
+  //     data.map((e) => {
+  //       if (e.title.toUpperCase().includes(str.toUpperCase())) {
+  //         filteredData[count] = e
+  //         count++
+  //         console.log(filteredData)
+  //       } else {
+  //         if (e.description.toUpperCase().includes(str.toUpperCase())) {
+  //           filteredData[count] = e
+  //           count++
+  //           console.log(filteredData)
+  //         } else {
+  //           if (e.url.toUpperCase().includes(str.toUpperCase())) {
+  //             filteredData[count] = e
+  //             count++
+  //             console.log(filteredData)
+  //           }
+  //         }
+  //       }
+  //     })
+  //   )
+  //   setResult(filteredData)
+  // }
+
+  //get Data from API
+  async function search(keyword) {
+    let response = await Axios.get(
+      'https://project-google-search-api-demo.herokuapp.com/results',
+      {
+        params: {
+          search: keyword,
+        },
+      }
     )
-    setResult(filteredData)
+    setResult(response.data)
   }
 
   return (
