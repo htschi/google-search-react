@@ -97,18 +97,20 @@ function App() {
       {/* Search Menu */}
       <div className="outerbox">
         <img id="logo" src="images/google.png" />
-        <form>
-          <input type="text" />
-          <button className="search-button">Search</button>
+        <form onSubmit={onSubmit}>
+          <input type="text" onChange={(e) => setSearchTerm(e.target.value)} />
+          <button className="search-button" onClick={() => search(searchTerm)}>
+            Search
+          </button>
         </form>
       </div>
       {/* Amount of Results */}
       <div className="amount-results">
-        <span>{data.length} Results</span>
+        <span>{results.length} Results</span>
       </div>
       {/* All Search Results */}
       <div className="search-results">
-        {data.map((e, i) => (
+        {results.map((e, i) => (
           <Result
             key={i}
             title={e.title}
