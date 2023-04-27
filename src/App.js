@@ -44,15 +44,12 @@ function App() {
   // }
 
   //get Data from API
-  async function search(keyword) {
-    let response = await Axios.get(
-      'https://project-google-search-api-demo.herokuapp.com/results',
-      {
-        params: {
-          search: keyword,
-        },
-      }
-    )
+  async function search() {
+    let response = await Axios.get('http://localhost:4000/results', {
+      params: {
+        search: searchTerm,
+      },
+    })
     setResult(response.data)
   }
 
