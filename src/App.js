@@ -45,12 +45,17 @@ function App() {
 
   //get Data from API
   async function search() {
-    let response = await Axios.get('http://localhost:4000/results', {
-      params: {
-        search: searchTerm,
-      },
-    })
-    setResult(response.data)
+    try {
+      let response = await Axios.get('http://localhost:4000/results', {
+        params: {
+          search: searchTerm,
+        },
+      })
+      setResult(response.data)
+      console.log(response)
+    } catch (err) {
+      throw err
+    }
   }
 
   return (
